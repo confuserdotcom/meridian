@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create:*)",
+      "Bash(npm install:*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(lsof -ti:5173 -ti:5174)",
+      "Bash(ls -1 /Users/Apple/Downloads/app/src/pages/*.jsx)",
+      "WebFetch(domain:github.com)",
+      "Bash(npx skills *)",
+      "mcp__codebase-memory-mcp__index_status",
+      "mcp__codebase-memory-mcp__get_architecture",
+      "mcp__codebase-memory-mcp__search_graph",
+      "mcp__codebase-memory-mcp__get_code_snippet",
+      "mcp__codebase-memory-mcp__search_code",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(npm run *)"
+    ]
+  }
+}

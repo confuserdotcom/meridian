@@ -1,0 +1,440 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout>
+  <!-- Nav -->
+  <header class="border-b border-line">
+    <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" class="text-ink">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="0" x2="12" y2="24" />
+        </svg>
+        <span class="font-mono text-[11px] tracking-[0.28em] uppercase text-ink">Meridian</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="#features" class="font-mono text-[10px] tracking-[0.22em] uppercase text-muted hover:text-ink transition-colors">Features</a>
+        <a href="#pricing" class="font-mono text-[10px] tracking-[0.22em] uppercase text-muted hover:text-ink transition-colors">Pricing</a>
+        <a href="#manifesto" class="font-mono text-[10px] tracking-[0.22em] uppercase text-muted hover:text-ink transition-colors">Manifesto</a>
+      </nav>
+      <div class="flex items-center gap-4">
+        <a href="#" class="hidden sm:inline-block font-mono text-[10px] tracking-[0.22em] uppercase text-muted hover:text-ink transition-colors">Sign in</a>
+        <a href="#cta" class="font-mono text-[10px] tracking-[0.22em] uppercase bg-ink text-paper px-3.5 h-8 inline-flex items-center hover:bg-[#222] transition-colors">Start free</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="border-b border-line">
+    <div class="max-w-6xl mx-auto px-6 py-24 md:py-32 grid md:grid-cols-12 gap-10 items-end">
+      <div class="md:col-span-7 rise">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="font-mono text-[10px] tracking-[0.28em] uppercase text-accent">● Private beta</span>
+          <span class="h-px w-8 bg-line"></span>
+          <span class="font-mono text-[10px] tracking-[0.28em] uppercase text-muted">v0.1</span>
+        </div>
+        <h1 class="font-display text-[64px] md:text-[92px] leading-[0.95] tracking-[-0.02em] text-ink">
+          Your daily<br/>
+          <em class="font-display italic text-accent">meridian.</em>
+        </h1>
+        <p class="mt-8 max-w-lg text-lg leading-relaxed text-ink/80">
+          A disciplined daily planner for people who want to compound effort, not track it.
+          Plan blocks. Log what actually happened. Learn the shape of your own day.
+        </p>
+        <div class="mt-10 flex flex-wrap items-center gap-5">
+          <a id="cta" href="#" class="font-mono text-[10px] tracking-[0.28em] uppercase bg-ink text-paper px-5 h-11 inline-flex items-center gap-2 hover:bg-[#222] transition-colors">
+            Start free
+            <span aria-hidden>→</span>
+          </a>
+          <a href="#features" class="font-mono text-[10px] tracking-[0.28em] uppercase text-ink hover:text-accent transition-colors border-b border-ink hover:border-accent pb-0.5">
+            See how it works
+          </a>
+        </div>
+        <div class="mt-12 flex items-center gap-6 text-[11px] font-mono text-muted">
+          <span>No credit card</span>
+          <span class="h-px w-6 bg-line"></span>
+          <span>Local-first</span>
+          <span class="h-px w-6 bg-line"></span>
+          <span>Works offline</span>
+        </div>
+      </div>
+
+      <!-- Timeline mockup -->
+      <div class="md:col-span-5 rise rise-2">
+        <div class="border border-line bg-white/60 backdrop-blur-sm">
+          <div class="border-b border-line px-4 h-10 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="h-1.5 w-1.5 bg-accent rounded-full"></span>
+              <span class="font-mono text-[9px] tracking-[0.25em] uppercase text-muted">Today · Mon</span>
+            </div>
+            <span class="font-mono text-[9px] tracking-[0.22em] uppercase text-muted">W16</span>
+          </div>
+          <div class="grid grid-cols-2 text-[9px] font-mono uppercase tracking-[0.25em] text-muted border-b border-line">
+            <div class="px-4 py-2 border-r border-line">Planned</div>
+            <div class="px-4 py-2">Actual</div>
+          </div>
+          <div class="relative grid grid-cols-2 h-[340px]">
+            <!-- Planned lane -->
+            <div class="relative border-r border-line">
+              <div class="absolute left-3 right-3 top-4 h-[56px] border-l-[3px] border-accent bg-accent-dim/60 pl-3 pr-2 py-2">
+                <div class="font-mono text-[9px] tracking-[0.2em] uppercase text-ink">Deep work</div>
+                <div class="font-mono text-[9px] text-muted mt-1">08:00 — 09:30</div>
+              </div>
+              <div class="absolute left-3 right-3 top-[88px] h-[40px] border-l-[3px] border-ink/70 bg-line/40 pl-3 pr-2 py-2">
+                <div class="font-mono text-[9px] tracking-[0.2em] uppercase text-ink">Class · Calculus</div>
+                <div class="font-mono text-[9px] text-muted mt-1">09:30 — 10:30</div>
+              </div>
+              <div class="absolute left-3 right-3 top-[136px] h-[76px] border-l-[3px] border-ink/70 bg-line/40 pl-3 pr-2 py-2">
+                <div class="font-mono text-[9px] tracking-[0.2em] uppercase text-ink">Study · Physics</div>
+                <div class="font-mono text-[9px] text-muted mt-1">10:45 — 12:30</div>
+              </div>
+              <div class="absolute left-3 right-3 top-[220px] h-[52px] border-l-[3px] border-accent bg-accent-dim/60 pl-3 pr-2 py-2">
+                <div class="font-mono text-[9px] tracking-[0.2em] uppercase text-ink">Review</div>
+                <div class="font-mono text-[9px] text-muted mt-1">14:00 — 15:15</div>
+              </div>
+            </div>
+            <!-- Actual lane -->
+            <div class="relative">
+              <div class="absolute left-2 right-3 top-4 h-[62px] border-l-[3px] border-ink bg-ink/5 pl-3 pr-2 py-2">
+                <div class="font-mono text-[9px] tracking-[0.2em] uppercase text-ink">Deep work</div>
+                <div class="font-mono text-[9px] text-muted mt-1">08:03 — 09:38</div>
+              </div>
+              <div class="absolute left-2 right-3 top-[92px] h-[48px] border-l-[3px] border-ink bg-ink/5 pl-3 pr-2 py-2">
+                <div class="font-mono text-[9px] tracking-[0.2em] uppercase text-ink">Class</div>
+                <div class="font-mono text-[9px] text-muted mt-1">09:40 — 10:34</div>
+              </div>
+              <div class="absolute left-2 right-3 top-[148px] h-[60px] border-l-[3px] border-ink bg-ink/5 pl-3 pr-2 py-2">
+                <div class="font-mono text-[9px] tracking-[0.2em] uppercase text-ink">Study · Physics</div>
+                <div class="font-mono text-[9px] text-muted mt-1">10:50 — 12:12</div>
+              </div>
+            </div>
+            <!-- Now line -->
+            <div class="absolute left-0 right-0 top-[198px] pointer-events-none">
+              <div class="flex items-center gap-0">
+                <span class="h-1.5 w-1.5 bg-accent rounded-full -ml-0.5"></span>
+                <span class="flex-1 h-px bg-accent"></span>
+              </div>
+              <span class="absolute right-2 -top-3 font-mono text-[9px] tracking-[0.2em] uppercase text-accent">Now · 13:48</span>
+            </div>
+          </div>
+        </div>
+        <div class="mt-3 flex items-center justify-between font-mono text-[9px] tracking-[0.22em] uppercase text-muted">
+          <span>Live preview</span>
+          <span>Plan vs actual</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Manifesto band -->
+  <section id="manifesto" class="border-b border-line">
+    <div class="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-12 gap-10">
+      <div class="md:col-span-4">
+        <span class="font-mono text-[10px] tracking-[0.28em] uppercase text-muted">§ 01 · Manifesto</span>
+      </div>
+      <div class="md:col-span-8">
+        <p class="font-display italic text-[32px] md:text-[40px] leading-[1.15] text-ink">
+          "A day planned is a day reclaimed. What gets measured in hours compounds across years."
+        </p>
+        <p class="mt-6 font-mono text-[10px] tracking-[0.22em] uppercase text-muted">
+          Meridian is built for the discipline, not the dopamine.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features (zig-zag) -->
+  <section id="features">
+    <!-- Feature 1: Schedule -->
+    <div class="border-b border-line">
+      <div class="max-w-6xl mx-auto px-6 py-24 grid md:grid-cols-12 gap-12 items-center">
+        <div class="md:col-span-5 order-2 md:order-1">
+          <span class="font-mono text-[10px] tracking-[0.28em] uppercase text-accent">§ 02 · Schedule</span>
+          <h2 class="mt-4 font-display text-[44px] md:text-[56px] leading-[1] tracking-[-0.01em] text-ink">
+            Lay down the <em class="italic">grid</em>.
+          </h2>
+          <p class="mt-6 text-ink/80 leading-relaxed">
+            Two lanes. Planned on the left, actual on the right. Drag blocks into place,
+            resize with a pull, annotate with a word. The timeline is yours &mdash; not a
+            feed, not a prompt, not a reminder.
+          </p>
+          <ul class="mt-8 space-y-3 font-mono text-[11px] tracking-[0.02em] text-ink/90">
+            <li class="flex gap-3"><span class="text-accent">—</span> Drag, drop, resize to the minute</li>
+            <li class="flex gap-3"><span class="text-accent">—</span> Phase presets: Normal · Exam · Break</li>
+            <li class="flex gap-3"><span class="text-accent">—</span> Keyboard-first. Zoom with Ctrl+scroll.</li>
+          </ul>
+        </div>
+        <div class="md:col-span-7 order-1 md:order-2">
+          <div class="border border-line bg-white/70 p-6">
+            <div class="flex items-center justify-between pb-4 border-b border-line">
+              <span class="font-mono text-[9px] tracking-[0.28em] uppercase text-muted">Phase</span>
+              <div class="flex gap-6 font-mono text-[10px] tracking-[0.25em] uppercase">
+                <span class="text-ink border-b border-accent pb-0.5">Normal</span>
+                <span class="text-muted">Exam</span>
+                <span class="text-muted">Break</span>
+              </div>
+            </div>
+            <div class="mt-6 grid grid-cols-7 gap-px bg-line">
+              {['M','T','W','T','F','S','S'].map((d, i) => (
+                <div class={`bg-paper h-10 flex items-center justify-center font-mono text-[10px] ${i === 2 ? 'bg-ink text-paper' : 'text-ink'}`}>
+                  {d}
+                </div>
+              ))}
+            </div>
+            <div class="mt-6 space-y-2">
+              <div class="flex items-stretch gap-0 border-l-[3px] border-accent bg-accent-dim/50 pl-3 pr-4 py-3">
+                <div class="flex-1">
+                  <div class="font-mono text-[10px] tracking-[0.22em] uppercase text-ink">Deep work · Thesis</div>
+                  <div class="font-mono text-[9px] text-muted mt-1">07:00 — 09:00 · 2h</div>
+                </div>
+                <div class="font-mono text-[9px] tracking-[0.22em] uppercase text-muted self-center">Focus</div>
+              </div>
+              <div class="flex items-stretch gap-0 border-l-[3px] border-ink/70 bg-line/40 pl-3 pr-4 py-3">
+                <div class="flex-1">
+                  <div class="font-mono text-[10px] tracking-[0.22em] uppercase text-ink">Class · Linear Algebra</div>
+                  <div class="font-mono text-[9px] text-muted mt-1">09:30 — 11:00 · 1h 30m</div>
+                </div>
+                <div class="font-mono text-[9px] tracking-[0.22em] uppercase text-muted self-center">Class</div>
+              </div>
+              <div class="flex items-stretch gap-0 border-l-[3px] border-ink/40 bg-line/20 pl-3 pr-4 py-3">
+                <div class="flex-1">
+                  <div class="font-mono text-[10px] tracking-[0.22em] uppercase text-ink">Review · Physics</div>
+                  <div class="font-mono text-[9px] text-muted mt-1">14:00 — 15:15 · 1h 15m</div>
+                </div>
+                <div class="font-mono text-[9px] tracking-[0.22em] uppercase text-muted self-center">Review</div>
+              </div>
+              <div class="flex items-stretch gap-0 border-l-[3px] border-ink/40 bg-line/20 pl-3 pr-4 py-3">
+                <div class="flex-1">
+                  <div class="font-mono text-[10px] tracking-[0.22em] uppercase text-ink">Run · Campus loop</div>
+                  <div class="font-mono text-[9px] text-muted mt-1">18:00 — 18:45 · 45m</div>
+                </div>
+                <div class="font-mono text-[9px] tracking-[0.22em] uppercase text-muted self-center">Body</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 2: Track -->
+    <div class="border-b border-line bg-[#F1ECE2]">
+      <div class="max-w-6xl mx-auto px-6 py-24 grid md:grid-cols-12 gap-12 items-center">
+        <div class="md:col-span-7">
+          <div class="grid grid-cols-3 border border-line bg-white/70 divide-x divide-line">
+            <div class="p-6">
+              <div class="font-display text-[48px] leading-[1] text-ink tabular-nums">42<span class="text-accent">.</span></div>
+              <div class="mt-3 font-mono text-[9px] tracking-[0.25em] uppercase text-muted">Streak · days</div>
+            </div>
+            <div class="p-6">
+              <div class="font-display text-[48px] leading-[1] text-ink tabular-nums">6.8<span class="text-muted">h</span></div>
+              <div class="mt-3 font-mono text-[9px] tracking-[0.25em] uppercase text-muted">Avg focus</div>
+            </div>
+            <div class="p-6">
+              <div class="font-display text-[48px] leading-[1] text-ink tabular-nums">91<span class="text-accent">%</span></div>
+              <div class="mt-3 font-mono text-[9px] tracking-[0.25em] uppercase text-muted">Plan adherence</div>
+            </div>
+          </div>
+          <div class="mt-6 border border-line bg-white/70 divide-y divide-line">
+            <div class="px-6 py-3 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <span class="h-1.5 w-1.5 bg-accent rounded-full"></span>
+                <span class="font-mono text-[10px] tracking-[0.22em] uppercase text-ink">Deep work</span>
+              </div>
+              <div class="flex items-center gap-6 font-mono text-[10px] text-muted">
+                <span>Planned 2h 00m</span>
+                <span class="text-ink">Actual 2h 14m</span>
+                <span class="text-accent">+12%</span>
+              </div>
+            </div>
+            <div class="px-6 py-3 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <span class="h-1.5 w-1.5 bg-ink/60 rounded-full"></span>
+                <span class="font-mono text-[10px] tracking-[0.22em] uppercase text-ink">Class</span>
+              </div>
+              <div class="flex items-center gap-6 font-mono text-[10px] text-muted">
+                <span>Planned 1h 30m</span>
+                <span class="text-ink">Actual 1h 24m</span>
+                <span>−6%</span>
+              </div>
+            </div>
+            <div class="px-6 py-3 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <span class="h-1.5 w-1.5 bg-ink/40 rounded-full"></span>
+                <span class="font-mono text-[10px] tracking-[0.22em] uppercase text-ink">Review</span>
+              </div>
+              <div class="flex items-center gap-6 font-mono text-[10px] text-muted">
+                <span>Planned 1h 15m</span>
+                <span class="text-ink">Actual 0h 58m</span>
+                <span>−17m</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="md:col-span-5">
+          <span class="font-mono text-[10px] tracking-[0.28em] uppercase text-accent">§ 03 · Track</span>
+          <h2 class="mt-4 font-display text-[44px] md:text-[56px] leading-[1] tracking-[-0.01em] text-ink">
+            The <em class="italic">truth</em> about your day.
+          </h2>
+          <p class="mt-6 text-ink/80 leading-relaxed">
+            Every tracked session writes to a plan-vs-actual ledger. Categories roll up weekly.
+            Predictions sharpen as your own data accumulates. No inbox, no badges, no push.
+          </p>
+          <ul class="mt-8 space-y-3 font-mono text-[11px] text-ink/90">
+            <li class="flex gap-3"><span class="text-accent">—</span> EWMA predictions (decay 0.82)</li>
+            <li class="flex gap-3"><span class="text-accent">—</span> Category rollups by day and week</li>
+            <li class="flex gap-3"><span class="text-accent">—</span> Streaks that track effort, not logins</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 3: Improve -->
+    <div class="border-b border-line">
+      <div class="max-w-6xl mx-auto px-6 py-24 grid md:grid-cols-12 gap-12 items-center">
+        <div class="md:col-span-5 order-2 md:order-1">
+          <span class="font-mono text-[10px] tracking-[0.28em] uppercase text-accent">§ 04 · Improve</span>
+          <h2 class="mt-4 font-display text-[44px] md:text-[56px] leading-[1] tracking-[-0.01em] text-ink">
+            A coach, not a <em class="italic">feed</em>.
+          </h2>
+          <p class="mt-6 text-ink/80 leading-relaxed">
+            Meridian surfaces quiet suggestions from the gaps in your own schedule &mdash;
+            spaced review for courses that are decaying, pomodoros where your attention tends
+            to hold, recovery when your week ran hot. Take it or leave it.
+          </p>
+          <ul class="mt-8 space-y-3 font-mono text-[11px] text-ink/90">
+            <li class="flex gap-3"><span class="text-accent">—</span> Spaced repetition across courses</li>
+            <li class="flex gap-3"><span class="text-accent">—</span> Free-gap detection &amp; fills</li>
+            <li class="flex gap-3"><span class="text-accent">—</span> Principles, daily &mdash; not streak anxiety</li>
+          </ul>
+        </div>
+        <div class="md:col-span-7 order-1 md:order-2">
+          <div class="border border-line bg-white/70">
+            <div class="flex items-center justify-between px-5 h-10 border-b border-line">
+              <span class="font-mono text-[9px] tracking-[0.28em] uppercase text-muted">Coach · Tue</span>
+              <span class="font-mono text-[9px] tracking-[0.22em] uppercase text-accent">3 insights</span>
+            </div>
+            <div class="divide-y divide-line">
+              <div class="px-5 py-5 flex gap-5">
+                <div class="font-display italic text-[28px] text-accent leading-none">i.</div>
+                <div>
+                  <div class="font-mono text-[10px] tracking-[0.22em] uppercase text-ink">Physics is decaying</div>
+                  <p class="mt-1.5 text-[13px] text-ink/80 leading-relaxed">Last review 6 days ago. Insert 45m review Wed 10:45 — aligns with your peak focus window.</p>
+                </div>
+              </div>
+              <div class="px-5 py-5 flex gap-5">
+                <div class="font-display italic text-[28px] text-accent leading-none">ii.</div>
+                <div>
+                  <div class="font-mono text-[10px] tracking-[0.22em] uppercase text-ink">You run hot after 14:00</div>
+                  <p class="mt-1.5 text-[13px] text-ink/80 leading-relaxed">Last 7 days: 83% plan adherence pre-lunch, 51% after. Consider shifting deep work earlier.</p>
+                </div>
+              </div>
+              <div class="px-5 py-5 flex gap-5">
+                <div class="font-display italic text-[28px] text-accent leading-none">iii.</div>
+                <div>
+                  <div class="font-mono text-[10px] tracking-[0.22em] uppercase text-ink">Free gap · 16:30 — 18:00</div>
+                  <p class="mt-1.5 text-[13px] text-ink/80 leading-relaxed">Unscheduled stretch. Suggested: 1 pomodoro of Calculus problem set, then walk.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="border-b border-line">
+    <div class="max-w-6xl mx-auto px-6 py-24">
+      <div class="grid md:grid-cols-12 gap-10 items-end mb-12">
+        <div class="md:col-span-8">
+          <span class="font-mono text-[10px] tracking-[0.28em] uppercase text-muted">§ 05 · Pricing</span>
+          <h2 class="mt-4 font-display text-[44px] md:text-[56px] leading-[1] tracking-[-0.01em] text-ink">
+            One price. <em class="italic">Fair.</em>
+          </h2>
+        </div>
+        <div class="md:col-span-4">
+          <p class="text-ink/80">No trials that convert silently. No annual lock-in. Cancel in one click.</p>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 border border-line divide-y md:divide-y-0 md:divide-x divide-line bg-white/60">
+        <!-- Free -->
+        <div class="p-10">
+          <div class="flex items-baseline justify-between">
+            <span class="font-mono text-[11px] tracking-[0.28em] uppercase text-ink">Free</span>
+            <span class="font-display italic text-[44px] text-ink leading-none">$0</span>
+          </div>
+          <p class="mt-3 text-[13px] text-muted">For one person, one device.</p>
+          <ul class="mt-8 space-y-3.5 text-[13px] text-ink/90">
+            <li class="flex gap-3"><span class="text-muted font-mono">01</span> Plan + actual timeline</li>
+            <li class="flex gap-3"><span class="text-muted font-mono">02</span> Local-first, works offline</li>
+            <li class="flex gap-3"><span class="text-muted font-mono">03</span> Pomodoro + streak</li>
+            <li class="flex gap-3"><span class="text-muted font-mono">04</span> 30 days of history</li>
+          </ul>
+          <a href="#" class="mt-10 inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.28em] uppercase border-b border-ink pb-0.5 hover:text-accent hover:border-accent transition-colors">
+            Start free <span aria-hidden>→</span>
+          </a>
+        </div>
+        <!-- Pro -->
+        <div class="p-10 bg-ink text-paper relative">
+          <span class="absolute top-5 right-5 font-mono text-[9px] tracking-[0.28em] uppercase text-accent">Recommended</span>
+          <div class="flex items-baseline justify-between">
+            <span class="font-mono text-[11px] tracking-[0.28em] uppercase">Pro</span>
+            <span class="font-display italic text-[44px] text-accent leading-none">$5<span class="text-paper/60 text-[18px]">/mo</span></span>
+          </div>
+          <p class="mt-3 text-[13px] text-paper/60">Everything, synced, forever.</p>
+          <ul class="mt-8 space-y-3.5 text-[13px] text-paper/90">
+            <li class="flex gap-3"><span class="text-paper/50 font-mono">01</span> Sync across all devices</li>
+            <li class="flex gap-3"><span class="text-paper/50 font-mono">02</span> Unlimited history &amp; exports</li>
+            <li class="flex gap-3"><span class="text-paper/50 font-mono">03</span> Coach &amp; spaced-rep suggestions</li>
+            <li class="flex gap-3"><span class="text-paper/50 font-mono">04</span> Weekly review digest</li>
+            <li class="flex gap-3"><span class="text-paper/50 font-mono">05</span> Priority email support</li>
+          </ul>
+          <a href="#" class="mt-10 inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.28em] uppercase bg-paper text-ink px-5 h-11 hover:bg-accent-dim transition-colors">
+            Go Pro <span aria-hidden>→</span>
+          </a>
+        </div>
+      </div>
+
+      <p class="mt-8 font-mono text-[10px] tracking-[0.22em] uppercase text-muted text-center">
+        Students · 50% off with .edu email
+      </p>
+    </div>
+  </section>
+
+  <!-- Closing CTA -->
+  <section class="border-b border-line">
+    <div class="max-w-6xl mx-auto px-6 py-28 grid md:grid-cols-12 gap-8 items-end">
+      <div class="md:col-span-8">
+        <h3 class="font-display text-[44px] md:text-[64px] leading-[0.98] tracking-[-0.01em] text-ink">
+          Plan the day.<br/>
+          <em class="italic text-accent">Own the year.</em>
+        </h3>
+      </div>
+      <div class="md:col-span-4 flex md:justify-end">
+        <a href="#" class="font-mono text-[10px] tracking-[0.28em] uppercase bg-ink text-paper px-6 h-12 inline-flex items-center gap-3 hover:bg-[#222] transition-colors">
+          Start free <span aria-hidden>→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" class="text-ink">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="0" x2="12" y2="24" />
+        </svg>
+        <span class="font-mono text-[10px] tracking-[0.28em] uppercase text-muted">Meridian · 2026</span>
+      </div>
+      <nav class="flex flex-wrap items-center gap-6 font-mono text-[10px] tracking-[0.22em] uppercase text-muted">
+        <a href="https://github.com" class="hover:text-ink transition-colors">GitHub</a>
+        <a href="mailto:hello@meridian.day" class="hover:text-ink transition-colors">hello@meridian.day</a>
+        <a href="#" class="hover:text-ink transition-colors">Privacy</a>
+        <a href="#" class="hover:text-ink transition-colors">Terms</a>
+      </nav>
+    </div>
+  </footer>
+</Layout>

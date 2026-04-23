@@ -1,0 +1,64 @@
+/* Meridian — Design Tokens
+   Single source of truth for color, typography, motion primitives.
+*/
+
+:root {
+  /* Raw palette */
+  --ink: #0A0A0A;
+  --paper: #F5F0E8;
+  --surface: #FFFFFF;
+  --border: #E5E0D8;
+  --muted: #8A8580;
+  --accent: #C4973A;
+  --accent-dim: #F0E4C4;
+
+  /* Semantic (light mode) */
+  --color-bg: var(--paper);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-text: var(--ink);
+  --color-text-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-bg: var(--accent-dim);
+
+  /* Fonts */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Geist', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 160ms;
+  --dur-base: 240ms;
+  --dur-slow: 600ms;
+
+  /* Grain */
+  --grain-opacity: 0.025;
+}
+
+/* Dark mode semantic remap */
+.dark {
+  --color-bg: var(--ink);
+  --color-surface: #111111;
+  --color-border: #222222;
+  --color-text: var(--paper);
+  --color-text-muted: #7A7570;
+}
+
+/* Grain texture — fixed, pointer-events none.
+   Avoids GPU repaint on scrolling containers (design-taste Rule 5). */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.8'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+.dark body::before {
+  mix-blend-mode: screen;
+  opacity: calc(var(--grain-opacity) * 1.5);
+}
