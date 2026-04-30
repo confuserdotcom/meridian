@@ -1,4 +1,4 @@
-import { sqliteTable, text, integer, real } from 'drizzle-orm/sqlite-core';
+import { sqliteTable, text, integer, real, uniqueIndex } from 'drizzle-orm/sqlite-core';
 import { sql } from 'drizzle-orm';
 
 // ─── better-auth core tables ─────────────────────────────────────────────────
@@ -58,7 +58,7 @@ export const schedules = sqliteTable('schedules', {
   // JSON: Record<day, TimeBlock[]>
   dayBlocks: text('day_blocks', { mode: 'json' }).notNull().$type<Record<string, { start: string; end: string; category: string; note?: string }[]>>(),
   updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`(unixepoch())`),
-});
+}, (t) => [uniqueIndex('schedules_user_phase_idx').on(t.userId, t.phase)]);
 
 export const timeLogs = sqliteTable('time_logs', {
   id: text('id').primaryKey().$defaultFn(() => crypto.randomUUID()),
