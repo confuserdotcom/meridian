@@ -236,16 +236,16 @@ Files: `Courses.jsx`, `Coach.jsx`, `Rules.jsx`, `Settings.jsx`, `WeeklyOverview.
 - [x] Settings: plain borders, amber focus rings
 - [x] Weekly Overview: sharp-border grid cells
 
-### MP8 · Backend Scaffolding `[ ]`
-- [ ] Monorepo: `apps/api/`, `packages/shared/`, root workspaces
-- [ ] `apps/api/` via `npm create hono@latest` (Cloudflare Workers)
-- [ ] Install `drizzle-orm`, `@libsql/client`, `better-auth`, `zod`
-- [ ] `packages/shared/src/schema.ts`: Zod entities (User, Schedule, TimeLog, Task, Course, Settings)
-- [ ] `apps/api/src/db/schema.ts`: Drizzle 8 tables (users, schedules, time_logs, tasks, big_three, pomodoro_sessions, courses, settings)
-- [ ] `apps/api/src/db/index.ts`: Turso client
-- [ ] `drizzle-kit generate` + `push` against local Turso dev DB
-- [ ] Routes: auth / schedule / logs / tasks / courses / settings
-- [ ] Verify: `wrangler dev` → `POST /auth/register`, `GET /me`
+### MP8 · Backend Scaffolding `[x]`
+- [x] Monorepo: `apps/api/`, `packages/shared/`, root workspaces
+- [x] `apps/api/` via `npm create hono@latest` (Cloudflare Workers)
+- [x] Install `drizzle-orm`, `@libsql/client`, `better-auth`, `zod`
+- [x] `packages/shared/src/schema.ts`: Zod entities (User, Schedule, TimeLog, Task, Course, Settings)
+- [x] `apps/api/src/db/schema.ts`: Drizzle 8 tables (users, schedules, time_logs, tasks, big_three, pomodoro_sessions, courses, settings)
+- [x] `apps/api/src/db/index.ts`: Turso client
+- [x] `drizzle-kit generate` + `push` against local Turso dev DB
+- [x] Routes: auth / schedule / logs / tasks / courses / settings
+- [x] Verify: `wrangler dev` → `POST /auth/sign-up/email` 200, `GET /me` 200
 
 ### MP9 · Frontend ↔ API Sync `[ ]`
 - [ ] `src/lib/api.ts` fetch wrapper (auth header, errors)
