@@ -41,7 +41,7 @@ export default function Settings() {
         <div className="flex items-center gap-6">
           <button
             onClick={() => darkMode && toggleDarkMode()}
-            className={`font-mono text-[10px] uppercase tracking-[0.22em] pb-1 transition-colors ${
+            className={`font-mono text-[10px] uppercase tracking-[0.22em] pb-1 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-1 ${
               !darkMode ? 'text-ink dark:text-paper border-b border-accent' : 'text-muted hover:text-ink dark:hover:text-paper'
             }`}
           >
@@ -49,7 +49,7 @@ export default function Settings() {
           </button>
           <button
             onClick={() => !darkMode && toggleDarkMode()}
-            className={`font-mono text-[10px] uppercase tracking-[0.22em] pb-1 transition-colors ${
+            className={`font-mono text-[10px] uppercase tracking-[0.22em] pb-1 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-1 ${
               darkMode ? 'text-ink dark:text-paper border-b border-accent' : 'text-muted hover:text-ink dark:hover:text-paper'
             }`}
           >
@@ -94,7 +94,7 @@ export default function Settings() {
       >
         <button
           onClick={resetStreak}
-          className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted border border-line rounded-sm px-3 py-1.5 hover:text-ink dark:hover:text-paper hover:border-ink dark:hover:border-paper transition-colors"
+          className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted border border-line rounded-sm px-3 py-1.5 hover:text-ink dark:hover:text-paper hover:border-ink dark:hover:border-paper transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-1"
         >
           Reset counter
         </button>
@@ -103,7 +103,7 @@ export default function Settings() {
       <Row label="Export" hint="Download the current phase schedule as JSON.">
         <button
           onClick={handleExport}
-          className="font-mono text-[10px] uppercase tracking-[0.22em] text-paper dark:text-ink bg-ink dark:bg-paper rounded-sm px-4 py-2 hover:bg-accent dark:hover:bg-accent hover:text-ink transition-colors"
+          className="font-mono text-[10px] uppercase tracking-[0.22em] text-paper dark:text-ink bg-ink dark:bg-paper rounded-sm px-4 py-2 hover:bg-accent dark:hover:bg-accent hover:text-ink transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-1"
         >
           Export {phase}.json →
         </button>

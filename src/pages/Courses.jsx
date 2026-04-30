@@ -249,16 +249,21 @@ function CourseCard({ course, index, effective, decay, logOpen, logHours, setLog
 
       {/* Decay */}
       {decay.decayed ? (
-        <div className="flex items-baseline justify-between border-t border-line pt-3">
-          <span className="font-mono text-[9px] uppercase tracking-[0.28em] text-accent">Decaying</span>
-          <span className="font-mono text-[10px] text-muted tabular-nums">
-            −{decay.decayAmount}% · {decay.daysSince}d untouched
-          </span>
+        <div className="flex flex-col gap-2 border-t border-line pt-3">
+          <div className="flex items-baseline justify-between">
+            <span className="font-mono text-[9px] uppercase tracking-[0.28em] text-accent">Decaying</span>
+            <span className="font-mono text-[10px] text-muted tabular-nums">
+              −<span className="font-display text-base leading-none">{decay.decayAmount}</span>% · <span className="font-display text-base leading-none">{decay.daysSince}</span>d untouched
+            </span>
+          </div>
+          <div className="h-px bg-line relative">
+            <div className="absolute left-0 top-0 h-0.5 -translate-y-1/4 bg-accent" style={{ width: `${Math.min(100, (decay.daysSince / 14) * 100)}%` }} />
+          </div>
         </div>
       ) : decay.daysSince !== null && decay.daysSince <= DECAY_THRESHOLD_DAYS_DISPLAY ? (
         <div className="flex items-baseline justify-between border-t border-line pt-3">
           <span className="font-mono text-[9px] uppercase tracking-[0.28em] text-muted">Active</span>
-          <span className="font-mono text-[10px] text-muted tabular-nums">studied {decay.daysSince}d ago</span>
+          <span className="font-mono text-[10px] text-muted tabular-nums">studied <span className="font-display text-base leading-none">{decay.daysSince}</span>d ago</span>
         </div>
       ) : (
         <div className="flex items-baseline justify-between border-t border-line pt-3">

@@ -84,7 +84,7 @@ export default function Rules() {
               <ul className="flex flex-col gap-2 mt-1">
                 {strat.steps.map((step, i) => (
                   <li key={i} className="flex gap-3 text-[12px] text-ink dark:text-paper leading-relaxed">
-                    <span className="font-mono text-[10px] text-accent tabular-nums mt-0.5 flex-shrink-0">
+                    <span className="font-display text-xl leading-none text-accent tabular-nums flex-shrink-0">
                       {String(i + 1).padStart(2, '0')}
                     </span>
                     <span>{step}</span>
