@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Play } from 'lucide-react';
 import { useCourses } from '../../hooks/useCourses';
-import { useTasks } from '../../hooks/useTasks';
+import { useTasks } from '../../hooks/queries/useTasks';
 import { useCheckin } from '../../hooks/useCheckin';
 import { usePomodoro } from '../../hooks/usePomodoro';
 import { generateStudySuggestions } from '../../utils/studySuggestions';
@@ -18,7 +18,7 @@ const typeLabels = {
 
 export default function StudySuggestions() {
   const { courses, getDecayInfo, getEffectiveConfidence } = useCourses();
-  const { tasks } = useTasks();
+  const { data: tasks = [] } = useTasks();
   const checkin = useCheckin();
   const pomodoroStart = usePomodoro((s) => s.start);
   const pomodoroSetDurations = usePomodoro((s) => s.setDurations);

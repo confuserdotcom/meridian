@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Pause, RotateCcw, ChevronDown, Check, BookOpen, ListChecks, X } from 'lucide-react';
 import { usePomodoro } from '../../hooks/usePomodoro';
 import { useCourses } from '../../hooks/useCourses';
-import { useTasks } from '../../hooks/useTasks';
+import { useTasks, useLogTaskHours } from '../../hooks/queries/useTasks';
 import { sounds } from '../../utils/sounds';
 
 // ——— Visual config ———
@@ -59,8 +59,8 @@ export default function CircularPomodoro() {
   } = usePomodoro();
   const courses = useCourses((s) => s.courses);
   const logStudyTime = useCourses((s) => s.logStudyTime);
-  const tasks = useTasks((s) => s.tasks);
-  const logHours = useTasks((s) => s.logHours);
+  const { data: tasks = [] } = useTasks();
+  const { mutate: logHoursMutate } = useLogTaskHours();
 
   const [selectedTaskId, setSelectedTaskId] = useState(currentTaskId);
   const [selectedCourseId, setSelectedCourseId] = useState(currentCourseId);
@@ -82,13 +82,16 @@ export default function CircularPomodoro() {
       const result = tick();
       if (result === 'complete' && wasWork && completedWork > 0) {
         const hours = completedWork / 60;
-        if (taskId) logHours(taskId, hours);
+        if (taskId) {
+          const task = usePomodoro.getState().currentTaskId ? tasks.find((t) => t.id === taskId) : null;
+          if (task) logHoursMutate({ id: taskId, hoursSpent: Math.round((task.hoursSpent + hours) * 10) / 10 });
+        }
         if (courseId) logStudyTime(courseId, hours);
         sounds.timerDone();
       }
     }, 1000);
     return () => clearInterval(intervalRef.current);
-  }, [isRunning, tick, logHours, logStudyTime]);
+  }, [isRunning, tick, logHoursMutate, logStudyTime, tasks]);
 
   const selectedTask = tasks.find((t) => t.id === selectedTaskId) || null;
   const selectedCourse = selectedTask
