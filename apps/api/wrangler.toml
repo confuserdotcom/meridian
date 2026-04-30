@@ -1,0 +1,11 @@
+name = "meridian-api"
+main = "src/index.ts"
+compatibility_date = "2025-05-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+BETTER_AUTH_SECRET = "change-this-in-production"
+BETTER_AUTH_URL = "http://localhost:8787"
+
+# Set TURSO_DATABASE_URL and TURSO_AUTH_TOKEN in .dev.vars (local)
+# and as Cloudflare secrets in production

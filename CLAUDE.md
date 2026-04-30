@@ -228,13 +228,13 @@ Files: `src/pages/Tracker.jsx`, `src/data/categories.js`.
 - [x] Actual-vs-planned: 2px lines (`h-0.5`) not full bars
 - [x] AI predictions header: muted only, no brain icon color
 
-### MP7 · Remaining Pages Polish `[ ]`
+### MP7 · Remaining Pages Polish `[x]`
 Files: `Courses.jsx`, `Coach.jsx`, `Rules.jsx`, `Settings.jsx`, `WeeklyOverview.jsx`.
-- [ ] Courses: thin decay lines, Cormorant days-since numbers
-- [ ] Coach: bordered plain-text suggestion rows
-- [ ] Rules: Cormorant numbers, Geist body
-- [ ] Settings: plain borders, amber focus rings
-- [ ] Weekly Overview: sharp-border grid cells
+- [x] Courses: thin decay lines, Cormorant days-since numbers
+- [x] Coach: bordered plain-text suggestion rows
+- [x] Rules: Cormorant numbers, Geist body
+- [x] Settings: plain borders, amber focus rings
+- [x] Weekly Overview: sharp-border grid cells
 
 ### MP8 · Backend Scaffolding `[ ]`
 - [ ] Monorepo: `apps/api/`, `packages/shared/`, root workspaces
