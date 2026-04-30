@@ -1,0 +1,27 @@
+{
+  "name": "@meridian/api",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
+  },
+  "dependencies": {
+    "hono": "^4.7.11",
+    "drizzle-orm": "^0.45.2",
+    "@libsql/client": "^0.15.9",
+    "better-auth": "^1.2.8",
+    "zod": "^3.25.34",
+    "@meridian/shared": "*"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250525.0",
+    "drizzle-kit": "^0.31.1",
+    "typescript": "^5.8.3",
+    "wrangler": "^4.16.0"
+  }
+}

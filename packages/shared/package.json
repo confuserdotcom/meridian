@@ -1,0 +1,13 @@
+{
+  "name": "@meridian/shared",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./schema": "./src/schema.ts"
+  },
+  "dependencies": {
+    "zod": "^3.25.34"
+  }
+}
