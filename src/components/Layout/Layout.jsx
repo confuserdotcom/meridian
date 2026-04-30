@@ -1,7 +1,8 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, Navigate } from 'react-router-dom';
 import { LayoutDashboard, CalendarDays, BookOpen, Settings, Brain, GraduationCap, Clock, Timer } from 'lucide-react';
 import { useStreak } from '../../hooks/useStreak';
 import { usePomodoro } from '../../hooks/usePomodoro';
+import { useAuth } from '../../contexts/AuthContext';
 import { sounds } from '../../utils/sounds';
 
 const navItems = [
@@ -25,12 +26,23 @@ function MeridianMark({ size = 18 }) {
 }
 
 export default function Layout() {
+  const { user, isLoading } = useAuth();
   const streak = useStreak((s) => s.count);
   const pomodoroRunning = usePomodoro((s) => s.isRunning);
   const pomodoroSeconds = usePomodoro((s) => s.secondsLeft);
 
   const pomodoroMins = Math.floor(pomodoroSeconds / 60);
   const pomodoroSecs = pomodoroSeconds % 60;
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-paper dark:bg-ink flex items-center justify-center">
+        <MeridianMark size={24} />
+      </div>
+    );
+  }
+
+  if (!user) return <Navigate to="/login" replace />;
 
   return (
     <div className="min-h-screen bg-paper dark:bg-ink text-ink dark:text-paper transition-colors duration-300">
