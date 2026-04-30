@@ -1,5 +1,12 @@
 const BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:8787';
 
+export class ApiError extends Error {
+  constructor(public readonly status: number, message: string) {
+    super(message);
+    this.name = 'ApiError';
+  }
+}
+
 async function apiFetch<T>(
   path: string,
   options?: Omit<RequestInit, 'body'> & { body?: unknown },
@@ -11,7 +18,7 @@ async function apiFetch<T>(
     body: options?.body !== undefined ? JSON.stringify(options.body) : undefined,
   });
   if (res.status === 401) throw new Error('UNAUTHORIZED');
-  if (!res.ok) throw new Error(await res.text());
+  if (!res.ok) throw new ApiError(res.status, await res.text());
   return res.json();
 }
 
