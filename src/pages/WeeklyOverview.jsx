@@ -52,7 +52,7 @@ export default function WeeklyOverview() {
 
       {/* Grid */}
       <div className="overflow-x-auto -mx-2 px-2">
-        <div className="grid grid-cols-7 gap-px bg-line border border-line rounded-sm min-w-[720px]">
+        <div className="grid grid-cols-7 gap-px bg-line border border-line min-w-[720px]">
           {days.map((day, di) => {
             const dayMins = schedule[day].reduce((a, b) => a + getDurationMinutes(b.start, b.end), 0);
             return (
@@ -98,7 +98,7 @@ export default function WeeklyOverview() {
       </div>
 
       {/* Weekly totals */}
-      <section className="border border-line rounded-sm">
+      <section className="border border-line">
         <header className="px-5 py-3 border-b border-line flex items-baseline justify-between">
           <span className="font-mono text-[9px] uppercase tracking-[0.28em] text-muted">Weekly Totals</span>
           <span className="font-mono text-[9px] text-muted">by category</span>

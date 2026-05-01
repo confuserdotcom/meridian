@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, X, Check, Trash2 } from 'lucide-react';
 import { useCheckin } from '../hooks/useCheckin';
-import { useTasks } from '../hooks/useTasks';
+import { useTasks, useAddTask, useDeleteTask, useToggleTask, getUrgencyScore, getAtRiskTasks, isRescueMode as checkRescueMode } from '../hooks/queries/useTasks';
 import { useCourses } from '../hooks/useCourses';
 import StudySuggestions from '../components/StudySuggestions/StudySuggestions';
 import Pomodoro from '../components/Pomodoro/Pomodoro';
@@ -22,7 +22,10 @@ const energyLevels = [
 
 export default function Coach() {
   const checkin = useCheckin();
-  const { tasks, addTask, removeTask, toggleComplete, getUrgencyScore, getAtRiskTasks, isRescueMode } = useTasks();
+  const { data: tasks = [] } = useTasks();
+  const { mutate: addTask } = useAddTask();
+  const { mutate: removeTask } = useDeleteTask();
+  const { mutate: toggleComplete } = useToggleTask();
   const { courses, getEffectiveConfidence, getDecayInfo } = useCourses();
 
   const [showAddTask, setShowAddTask] = useState(false);
@@ -31,8 +34,8 @@ export default function Coach() {
   const [tempCheckin, setTempCheckin] = useState({ mood: null, energy: null, hours: 5 });
 
   const hasCheckedIn = checkin.hasCheckedInToday();
-  const rescueMode = isRescueMode();
-  const atRisk = getAtRiskTasks();
+  const rescueMode = checkRescueMode(tasks);
+  const atRisk = getAtRiskTasks(tasks);
   const activeTasks = tasks.filter((t) => !t.completed).sort((a, b) => getUrgencyScore(b) - getUrgencyScore(a));
   const completedTasks = tasks.filter((t) => t.completed);
 
@@ -320,7 +323,7 @@ export default function Coach() {
                   className={`group flex items-start gap-3 px-4 py-3 ${critical ? 'border-l-[3px] border-l-accent pl-[13px]' : ''}`}
                 >
                   <button
-                    onClick={() => { toggleComplete(task.id); sounds.taskComplete(); }}
+                    onClick={() => { toggleComplete({ id: task.id, completed: !task.completed }); sounds.taskComplete(); }}
                     className="flex-shrink-0 w-3.5 h-3.5 mt-1 border border-line hover:border-accent transition-colors"
                     aria-label="Toggle complete"
                   />

@@ -1,0 +1,5 @@
+# Copy this to .dev.vars and fill in your Turso credentials
+TURSO_DATABASE_URL=libsql://your-db-name-your-org.turso.io
+TURSO_AUTH_TOKEN=your-token-here
+BETTER_AUTH_SECRET=a-long-random-secret-string
+BETTER_AUTH_URL=http://localhost:8787
