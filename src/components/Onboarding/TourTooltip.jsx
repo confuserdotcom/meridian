@@ -4,6 +4,7 @@ export default function TourTooltip({ tourKey, title, body, onNext, onSkip, isLa
   const [rect, setRect] = useState(null);
 
   useEffect(() => {
+    setRect(null);
     const el = document.querySelector(`[data-tour="${tourKey}"]`);
     if (!el) return;
     const r = el.getBoundingClientRect();
@@ -18,29 +19,27 @@ export default function TourTooltip({ tourKey, title, body, onNext, onSkip, isLa
   const spotWidth = rect.width + PAD * 2;
   const spotHeight = rect.height + PAD * 2;
 
-  // Tooltip: show below target if target is in top half, else above
   const showBelow = rect.top < window.innerHeight / 2;
   const tooltipTop = showBelow ? spotTop + spotHeight + 12 : spotTop - 12;
   const tooltipTransform = showBelow ? 'translateY(0)' : 'translateY(-100%)';
 
+  const overlayStyle = 'absolute bg-ink/60 pointer-events-none';
+
   return (
     <div className="fixed inset-0 z-50 pointer-events-none">
-      {/* Dark overlay — four rectangles around the spotlight */}
-      <div className="absolute inset-0 bg-ink/60" style={{
-        clipPath: `polygon(
-          0% 0%, 100% 0%, 100% 100%, 0% 100%,
-          0% ${spotTop}px,
-          ${spotLeft}px ${spotTop}px,
-          ${spotLeft}px ${spotTop + spotHeight}px,
-          ${spotLeft + spotWidth}px ${spotTop + spotHeight}px,
-          ${spotLeft + spotWidth}px ${spotTop}px,
-          0% ${spotTop}px
-        )`,
-      }} />
+      {/* Four overlay strips that surround the spotlight — avoids clipPath evenodd issue */}
+      {/* Top strip */}
+      <div className={overlayStyle} style={{ top: 0, left: 0, right: 0, height: spotTop }} />
+      {/* Bottom strip */}
+      <div className={overlayStyle} style={{ top: spotTop + spotHeight, left: 0, right: 0, bottom: 0 }} />
+      {/* Left strip */}
+      <div className={overlayStyle} style={{ top: spotTop, left: 0, width: spotLeft, height: spotHeight }} />
+      {/* Right strip */}
+      <div className={overlayStyle} style={{ top: spotTop, left: spotLeft + spotWidth, right: 0, height: spotHeight }} />
 
       {/* Spotlight border */}
       <div
-        className="absolute border border-accent/60"
+        className="absolute border border-accent"
         style={{ top: spotTop, left: spotLeft, width: spotWidth, height: spotHeight }}
       />
 
