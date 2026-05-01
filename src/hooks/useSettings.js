@@ -9,10 +9,10 @@ export const useSettings = create(
       darkMode: false,
       wakeOffset: 0,
       toggleDarkMode: () => {
-        set((s) => ({ darkMode: !s.darkMode }));
-        const { darkMode } = get();
+        const next = !get().darkMode;
+        set({ darkMode: next });
         if (isAuthenticated()) {
-          api.put('/settings', { darkMode }).catch(err => console.warn('sync failed:', err));
+          api.put('/settings', { darkMode: next }).catch(err => console.warn('sync failed:', err));
         }
       },
       setWakeOffset: (offset) => {

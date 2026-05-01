@@ -29,9 +29,13 @@ export async function login(email: string, password: string): Promise<AuthUser> 
 }
 
 export async function register(email: string, password: string, name: string): Promise<AuthUser> {
-  const res = await api.post<{ token: string; user: AuthUser }>('/auth/sign-up/email', { email, password, name });
-  setToken(res.token);
-  return res.user;
+  const res = await api.post<{ token: string | null; user: AuthUser }>('/auth/sign-up/email', { email, password, name });
+  if (res.token) {
+    setToken(res.token);
+    return res.user;
+  }
+  // better-auth may return null token on sign-up — sign in immediately to get token
+  return login(email, password);
 }
 
 export async function logout(): Promise<void> {

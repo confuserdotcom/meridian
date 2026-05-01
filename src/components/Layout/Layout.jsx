@@ -44,7 +44,7 @@ export default function Layout() {
     getMe().then((user) => {
       if (!user) navigate('/login');
     });
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     if (!isAuthenticated()) return;
