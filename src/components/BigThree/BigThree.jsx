@@ -21,7 +21,7 @@ export default function BigThree() {
   const completed = tasks.filter((t) => t.done).length;
 
   return (
-    <div className="bg-white dark:bg-[#111] rounded-sm border border-line dark:border-[#222] p-5">
+    <div data-tour="bigthree" className="bg-white dark:bg-[#111] rounded-sm border border-line dark:border-[#222] p-5">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <Target size={12} className="text-muted" strokeWidth={1.5} />

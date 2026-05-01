@@ -408,7 +408,7 @@ export default function Timeline({ blocks, day, date, interactive = true, showAc
           <div style={{ width: 58 }} />
           <div className="flex-1 flex items-center">
             <div className="flex-1 px-2 py-1.5 border-r border-line">
-              <span className="font-mono text-[9px] uppercase tracking-[0.28em] text-muted">Planned</span>
+              <span data-tour="timeline" className="font-mono text-[9px] uppercase tracking-[0.28em] text-muted">Planned</span>
             </div>
             <div className="flex-1 px-2 py-1.5">
               <span className="font-mono text-[9px] uppercase tracking-[0.28em] text-muted">

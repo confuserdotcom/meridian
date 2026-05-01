@@ -1,7 +1,8 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, Navigate } from 'react-router-dom';
 import { LayoutDashboard, CalendarDays, BookOpen, Settings, Brain, GraduationCap, Clock, Timer } from 'lucide-react';
 import { useStreak } from '../../hooks/useStreak';
 import { usePomodoro } from '../../hooks/usePomodoro';
+import { useOnboarding } from '../../hooks/useOnboarding';
 import { sounds } from '../../utils/sounds';
 
 const navItems = [
@@ -28,9 +29,12 @@ export default function Layout() {
   const streak = useStreak((s) => s.count);
   const pomodoroRunning = usePomodoro((s) => s.isRunning);
   const pomodoroSeconds = usePomodoro((s) => s.secondsLeft);
+  const onboardingCompleted = useOnboarding((s) => s.completed);
 
   const pomodoroMins = Math.floor(pomodoroSeconds / 60);
   const pomodoroSecs = pomodoroSeconds % 60;
+
+  if (!onboardingCompleted) return <Navigate to="/onboarding" replace />;
 
   return (
     <div className="min-h-screen bg-paper dark:bg-ink text-ink dark:text-paper transition-colors duration-300">
@@ -73,7 +77,7 @@ export default function Layout() {
               </span>
             )}
             {streak > 0 && (
-              <span className="font-mono text-[10px] text-accent tracking-wider">{streak}d</span>
+              <span data-tour="streak" className="font-mono text-[10px] text-accent tracking-wider">{streak}d</span>
             )}
           </div>
         </div>

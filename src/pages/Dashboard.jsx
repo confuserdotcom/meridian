@@ -9,9 +9,11 @@ import EndOfDayLog from '../components/EndOfDayLog/EndOfDayLog';
 import { usePhase } from '../hooks/usePhase';
 import { useStreak } from '../hooks/useStreak';
 import { useCalendarView } from '../hooks/useCalendarView';
+import { useOnboarding } from '../hooks/useOnboarding';
 import { schedules } from '../data/schedules';
 import { categories } from '../data/categories';
 import { getTodayName, parseTime, getCurrentTimeMinutes } from '../utils/time';
+import TourTooltip from '../components/Onboarding/TourTooltip';
 
 const DAY_CAPS = {
   Monday: 'MON', Tuesday: 'TUE', Wednesday: 'WED', Thursday: 'THU',
@@ -33,6 +35,24 @@ export default function Dashboard() {
   const isFullscreen = useCalendarView((s) => s.isFullscreen);
   const [selectedDay, setSelectedDay] = useState(getTodayName());
   const [now, setNow] = useState(getCurrentTimeMinutes());
+  const { tourSeen, completeTour } = useOnboarding();
+  const [tourStop, setTourStop] = useState(0);
+
+  const TOUR_STOPS = [
+    { key: 'timeline', title: '01 · Plan', body: 'Your plan lives here. Drag blocks, resize, rearrange.' },
+    { key: 'timeline', title: '02 · Track', body: 'Hit play on any block to start tracking. Actual time logs to the right lane.' },
+    { key: 'phase-selector', title: '03 · Phases', body: 'Switch modes when exams hit or breaks start. Schedule adjusts automatically.' },
+    { key: 'streak', title: '04 · Streak', body: 'Every day you track at least one block counts. Compounds fast.' },
+    { key: 'bigthree', title: '05 · Big 3', body: "Three things. That's your day's contract with yourself." },
+  ];
+
+  const handleTourNext = () => {
+    if (tourStop >= TOUR_STOPS.length - 1) {
+      completeTour();
+    } else {
+      setTourStop((s) => s + 1);
+    }
+  };
 
   useEffect(() => {
     const id = setInterval(() => setNow(getCurrentTimeMinutes()), 60000);
@@ -90,7 +110,7 @@ export default function Dashboard() {
               )}
             </div>
 
-            <PhaseSelector />
+            <div data-tour="phase-selector"><PhaseSelector /></div>
 
             <div className="flex items-center justify-between">
               <DaySelector selected={selectedDay} onSelect={setSelectedDay} />
@@ -135,6 +155,16 @@ export default function Dashboard() {
           </div>
         )}
       </div>
+      {!tourSeen && (
+        <TourTooltip
+          tourKey={TOUR_STOPS[tourStop].key}
+          title={TOUR_STOPS[tourStop].title}
+          body={TOUR_STOPS[tourStop].body}
+          onNext={handleTourNext}
+          onSkip={completeTour}
+          isLast={tourStop === TOUR_STOPS.length - 1}
+        />
+      )}
     </motion.div>
   );
 }
