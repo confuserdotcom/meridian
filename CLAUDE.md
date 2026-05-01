@@ -263,7 +263,7 @@ Files: `Courses.jsx`, `Coach.jsx`, `Rules.jsx`, `Settings.jsx`, `WeeklyOverview.
 - [x] Features zig-zag: Schedule · Track · Improve (inline SVG mockups, no 3-col cards)
 - [x] Pricing: Free vs Pro $5/mo two-col
 - [x] Footer: GitHub + `hello@meridian.day`
-- [ ] Deploy to Cloudflare Pages under `meridian.day`
+- [x] Deploy to Cloudflare Pages (meridian-landing-4it.pages.dev)
 
 ### Sequence
 
