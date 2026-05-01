@@ -1,12 +1,14 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { api } from '../lib/api';
+import { isAuthenticated } from '../lib/auth';
 
 export const useTasks = create(
   persist(
     (set, get) => ({
       tasks: [],
 
-      addTask: (task) =>
+      addTask: (task) => {
         set((s) => ({
           tasks: [
             ...s.tasks,
@@ -22,22 +24,42 @@ export const useTasks = create(
               createdAt: new Date().toISOString(),
             },
           ],
-        })),
+        }));
+        if (isAuthenticated()) {
+          api.post('/tasks', {
+            title: task.title,
+            courseId: task.courseId || null,
+            deadline: task.deadline,
+            estimatedHours: task.estimatedHours || 2,
+            isExam: task.isExam || false,
+          }).catch(err => console.warn('sync failed:', err));
+        }
+      },
 
       updateTask: (id, updates) =>
         set((s) => ({
           tasks: s.tasks.map((t) => (t.id === id ? { ...t, ...updates } : t)),
         })),
 
-      removeTask: (id) =>
-        set((s) => ({ tasks: s.tasks.filter((t) => t.id !== id) })),
+      removeTask: (id) => {
+        set((s) => ({ tasks: s.tasks.filter((t) => t.id !== id) }));
+        if (isAuthenticated()) {
+          api.delete(`/tasks/${id}`).catch(err => console.warn('sync failed:', err));
+        }
+      },
 
-      toggleComplete: (id) =>
+      toggleComplete: (id) => {
+        const task = get().tasks.find((t) => t.id === id);
         set((s) => ({
           tasks: s.tasks.map((t) =>
             t.id === id ? { ...t, completed: !t.completed } : t
           ),
-        })),
+        }));
+        if (isAuthenticated() && task) {
+          api.patch(`/tasks/${id}`, { completed: !task.completed })
+            .catch(err => console.warn('sync failed:', err));
+        }
+      },
 
       logHours: (id, hours) =>
         set((s) => ({
