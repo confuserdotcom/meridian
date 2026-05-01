@@ -1,5 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { api } from '../lib/api';
+import { isAuthenticated } from '../lib/auth';
 
 /**
  * Persisted log of completed tracking sessions. Each entry captures:
@@ -15,7 +17,7 @@ export const useTimeLog = create(
     (set, get) => ({
       logs: [],
 
-      addLog: (session) =>
+      addLog: (session) => {
         set((s) => ({
           logs: [
             ...s.logs,
@@ -25,10 +27,26 @@ export const useTimeLog = create(
               createdAt: new Date().toISOString(),
             },
           ],
-        })),
+        }));
+        if (isAuthenticated()) {
+          api.post('/logs', {
+            category: session.category,
+            plannedStart: session.plannedStart,
+            plannedEnd: session.plannedEnd,
+            actualStart: session.actualStart,
+            actualEnd: session.actualEnd,
+            date: session.date,
+            note: session.note ?? null,
+          }).catch(err => console.warn('sync failed:', err));
+        }
+      },
 
-      removeLog: (id) =>
-        set((s) => ({ logs: s.logs.filter((l) => l.id !== id) })),
+      removeLog: (id) => {
+        set((s) => ({ logs: s.logs.filter((l) => l.id !== id) }));
+        if (isAuthenticated()) {
+          api.delete(`/logs/${id}`).catch(err => console.warn('sync failed:', err));
+        }
+      },
 
       clearAll: () => set({ logs: [] }),
 
