@@ -1,8 +1,14 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { useEffect } from 'react';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { LayoutDashboard, CalendarDays, BookOpen, Settings, Brain, GraduationCap, Clock, Timer } from 'lucide-react';
 import { useStreak } from '../../hooks/useStreak';
 import { usePomodoro } from '../../hooks/usePomodoro';
+import { useTimeLog } from '../../hooks/useTimeLog';
+import { useTasks } from '../../hooks/useTasks';
+import { useSettings } from '../../hooks/useSettings';
 import { sounds } from '../../utils/sounds';
+import { isAuthenticated, getMe } from '../../lib/auth';
+import { api } from '../../lib/api';
 
 const navItems = [
   { to: '/', icon: LayoutDashboard, label: 'Today' },
@@ -25,9 +31,32 @@ function MeridianMark({ size = 18 }) {
 }
 
 export default function Layout() {
+  const navigate = useNavigate();
   const streak = useStreak((s) => s.count);
   const pomodoroRunning = usePomodoro((s) => s.isRunning);
   const pomodoroSeconds = usePomodoro((s) => s.secondsLeft);
+
+  useEffect(() => {
+    if (!isAuthenticated()) {
+      navigate('/login');
+      return;
+    }
+    getMe().then((user) => {
+      if (!user) navigate('/login');
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!isAuthenticated()) return;
+    Promise.all([
+      api.get('/tasks').then((r) => useTasks.setState({ tasks: r.data })),
+      api.get('/logs').then((r) => useTimeLog.setState({ logs: r.data })),
+      api.get('/settings').then((r) => useSettings.setState({
+        darkMode: r.data.darkMode,
+        wakeOffset: r.data.wakeOffset,
+      })),
+    ]).catch((err) => console.warn('Hydration failed:', err));
+  }, []);
 
   const pomodoroMins = Math.floor(pomodoroSeconds / 60);
   const pomodoroSecs = pomodoroSeconds % 60;

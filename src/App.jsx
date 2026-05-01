@@ -10,6 +10,7 @@ import Rules from './pages/Rules';
 import Settings from './pages/Settings';
 import Tracker from './pages/Tracker';
 import Timer from './pages/Timer';
+import Login from './pages/Login';
 import { useSettings } from './hooks/useSettings';
 
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/login" element={<Login />} />
         <Route element={<Layout />}>
           <Route path="/" element={<Dashboard />} />
           <Route path="/week" element={<WeeklyOverview />} />
