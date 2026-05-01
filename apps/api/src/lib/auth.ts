@@ -1,5 +1,6 @@
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
+import { bearer } from 'better-auth/plugins';
 import type { Database, Env } from '../db';
 import * as schema from '../db/schema';
 
@@ -22,6 +23,7 @@ export function createAuth(db: Database, env: Env) {
       requireEmailVerification: false,
     },
     trustedOrigins: ['http://localhost:5173', 'https://meridian.day'],
+    plugins: [bearer()],
   });
 }
 
