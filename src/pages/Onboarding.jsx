@@ -6,6 +6,37 @@ import { useSettings } from '../hooks/useSettings';
 import { useCourses } from '../hooks/useCourses';
 import OnboardingStep from '../components/Onboarding/OnboardingStep';
 
+const TagInput = ({ value, onChange, onAdd, tags, onRemove, placeholder }) => (
+  <div>
+    <div className="flex gap-2 mb-3">
+      <input
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        onKeyDown={(e) => e.key === 'Enter' && onAdd()}
+        placeholder={placeholder}
+        className="flex-1 bg-transparent border-b border-line dark:border-[#333] font-mono text-[11px] py-2 text-ink dark:text-paper placeholder:text-muted focus:outline-none focus:border-accent transition-colors"
+      />
+      <button
+        onClick={onAdd}
+        className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent border-b border-accent pb-1 hover:text-ink hover:border-ink dark:hover:text-paper dark:hover:border-paper transition-colors"
+      >
+        Add
+      </button>
+    </div>
+    <div className="flex flex-wrap gap-2">
+      {tags.map((tag) => (
+        <span
+          key={tag}
+          className="font-mono text-[9px] uppercase tracking-[0.22em] border border-line dark:border-[#333] px-2 py-1 text-ink dark:text-paper flex items-center gap-2"
+        >
+          {tag}
+          <button onClick={() => onRemove(tag)} className="text-muted hover:text-ink dark:hover:text-paper">×</button>
+        </span>
+      ))}
+    </div>
+  </div>
+);
+
 export default function Onboarding() {
   const navigate = useNavigate();
   const { setName, setWorkHours, setHobbies, setNonAcademicInterests, completeWizard } = useOnboarding();
@@ -70,37 +101,6 @@ export default function Onboarding() {
     completeWizard();
     navigate('/', { replace: true });
   };
-
-  const TagInput = ({ value, onChange, onAdd, tags, onRemove, placeholder }) => (
-    <div>
-      <div className="flex gap-2 mb-3">
-        <input
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && onAdd()}
-          placeholder={placeholder}
-          className="flex-1 bg-transparent border-b border-line dark:border-[#333] font-mono text-[11px] py-2 text-ink dark:text-paper placeholder:text-muted focus:outline-none focus:border-accent transition-colors"
-        />
-        <button
-          onClick={onAdd}
-          className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent border-b border-accent pb-1 hover:text-ink hover:border-ink dark:hover:text-paper dark:hover:border-paper transition-colors"
-        >
-          Add
-        </button>
-      </div>
-      <div className="flex flex-wrap gap-2">
-        {tags.map((tag) => (
-          <span
-            key={tag}
-            className="font-mono text-[9px] uppercase tracking-[0.22em] border border-line dark:border-[#333] px-2 py-1 text-ink dark:text-paper flex items-center gap-2"
-          >
-            {tag}
-            <button onClick={() => onRemove(tag)} className="text-muted hover:text-ink dark:hover:text-paper">×</button>
-          </span>
-        ))}
-      </div>
-    </div>
-  );
 
   if (step === 1) return (
     <OnboardingStep
